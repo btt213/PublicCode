@@ -1,0 +1,15 @@
+<div class="p-d-flex p-flex-column">
+  <div class="p-col-12 p-mx-auto" style="background-color: #131921; padding: 0" >
+    <app-header></app-header>
+  </div>
+  <div class="p-col-12 p-mx-auto" style="background-color: #ffffff; padding: 0">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="p-col-12 p-mx-auto" style="background-color: #ffffff; padding: 0">
+    <app-footer></app-footer>
+  </div>
+</div>
+<div id="bg" tabindex="1" class="progress-spinner p-d-flex p-jc-center p-ai-center" *ngIf="loading" >
+  <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8" animationDuration=".5s"></p-progressSpinner>
+</div>
+

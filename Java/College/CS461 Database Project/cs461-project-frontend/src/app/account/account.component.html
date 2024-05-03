@@ -1,0 +1,145 @@
+<div style="padding: 14px 18px 18px 18px;min-width: 998px;">
+  <div style="margin: 0 auto;max-width: 1000px;min-width: 1000px;">
+    <div style="margin-bottom: 12px">
+      <h1>Your Account</h1>
+      <ul>
+        <li *ngFor="let card of cards">
+          <div class="card-cell">
+            <div *ngIf="card.Name != 'skip'" class="card-button" (click)="this.router.navigateByUrl(card.routerLink)">
+              <div class="p-d-flex p-grid" style=" position: relative">
+                <div class="p-col-3" >
+                  <img src="{{card.img}}">
+                </div>
+                <div class="p-col-9">
+                  <h3>
+                    {{card.Name}}
+                  </h3>
+                  <span>
+                    {{card.Desc}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<p-dialog header="Prime Membership" [(visible)]="primeVisible" [modal]="true" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false" (onHide)="router.navigateByUrl('account')">
+  <div style="width: 350px; height: 150px;">
+    <h3>
+      Current Subscription:
+    </h3>
+    <h4 style="margin-bottom: 40px">
+      {{currentUser.primeMember?'Amazon Prime Member':'Not Subscribed'}}
+    </h4>
+    <div class="p-d-flex p-jc-center">
+      <button pRipple pButton class="gray-button" label="{{currentUser.primeMember?'Cancel Membership':'Become an Amazon Prime Member'}}" type="button" (click)="changeMembership()" ></button>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog header="Edit Name" [(visible)]="editNameVisible" [modal]="true" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false" (onHide)="router.navigateByUrl('account?part=changeDetails')">
+  <div style="width: 350px;" class="p-fluid">
+    <form [formGroup]="nameForm" #formName="ngForm" (ngSubmit)="submitName(formName);">
+      <div class="p-field form-group">
+        <label>First Name</label>
+        <input pInputText type="text" formControlName="firstName" id="firstName" class="form-control" [ngClass]="{ 'is-invalid': formName.submitted && name.firstName.errors }">
+        <small *ngIf="formName.submitted && name.firstName.invalid && name.firstName.errors.required" id="firstName-notification" class="p-error">First Name is required</small>
+      </div>
+      <div class="p-field form-group">
+        <label>Last Name</label>
+        <input pInputText type="text" formControlName="lastName" id="lastName" class="form-control" [ngClass]="{ 'is-invalid': formName.submitted && name.lastName.errors }">
+        <small *ngIf="formName.submitted && name.lastName.invalid && name.lastName.errors.required" id="lastName-notification" class="p-error">Last Name is required</small>
+      </div>
+      <div class="p-d-flex p-jc-center" style="margin-top: 20px">
+        <button pButton pRipple class="yellow-button" label="Cancel" type="reset" (click)="editNameVisible = false" style="margin-right: 10px"></button>
+        <button pRipple pButton class="gray-button" label="Save" type="submit"></button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
+<p-dialog header="Edit Email" [(visible)]="editEmailVisible" [modal]="true" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false" (onHide)="router.navigateByUrl('account?part=changeDetails')">
+  <div style="width: 350px;" class="p-fluid">
+    <form [formGroup]="emailForm" #formEmail="ngForm" (ngSubmit)="submitEmail(formEmail)">
+      <div class="p-field form-group">
+        <label>Email</label>
+        <input pInputText type="text" formControlName="email" id="email" class="form-control" [ngClass]="{ 'is-invalid': formEmail.submitted && email.email.errors }">
+        <small *ngIf="formEmail.submitted && email.email.invalid && name.email.errors.required" id="email-notification" class="p-error">Email is required</small>
+      </div>
+      <div class="p-d-flex p-jc-center" style="margin-top: 20px">
+        <button pButton pRipple class="gray-button"   label="Cancel" type="reset" (click)="editEmailVisible = false" style="margin-right: 10px"></button>
+        <button pRipple pButton class="yellow-button" label="Save" type="submit"></button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
+
+<p-dialog header="Edit Password" [(visible)]="editPasswordVisible" [modal]="true" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false" (onHide)="router.navigateByUrl('account?part=changeDetails')">
+  <div style="width: 350px;" class="p-fluid">
+    <form [formGroup]="passwordForm" #formPassword="ngForm" (ngSubmit)="submitPassword(formPassword)">
+      <div class="p-field form-group">
+        <label>Current Password</label>
+        <p-password [feedback]="false" formControlName="password" id="password" class="form-control" [ngClass]="{ 'is-invalid': formPassword.submitted && password.password.errors }"></p-password>
+        <small *ngIf="formPassword.submitted && password.password.invalid && password.password.errors.required" id="password-notification" class="p-error">Password is required</small>
+      </div>
+      <div class="p-field form-group">
+        <label>New Password</label>
+        <p-password [toggleMask]="true" formControlName="newPassword" id="newPassword" class="form-control" [ngClass]="{ 'is-invalid': formPassword.submitted && password.newPassword.errors }"></p-password>
+        <small *ngIf="formPassword.submitted && password.newPassword.invalid && password.newPassword.errors.required" class="p-error">Password is required</small>
+        <small *ngIf="formPassword.submitted && password.newPassword.invalid && password.newPassword.errors.minLength" class="p-error">Passwords must be at least 6 characters</small>
+      </div>
+      <div class="p-field form-group">
+        <label>Confirm Password</label>
+        <p-password [feedback]="false" formControlName="confirmPassword" id="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': formPassword.submitted && password.confirmPassword.errors }"></p-password>
+        <small *ngIf="formPassword.submitted && password.confirmPassword.invalid && password.confirmPassword.errors.required" class="p-error">Password is required</small>
+        <small *ngIf="password.confirmPassword.touched && password.confirmPassword.invalid && password.confirmPassword.errors.mustMatch" class="p-error">Passwords dont match</small>
+      </div>
+      <div class="p-d-flex p-jc-center" style="margin-top: 20px">
+        <button pButton pRipple class="gray-button"   label="Cancel" type="reset" (click)="editPasswordVisible = false" style="margin-right: 10px"></button>
+        <button pRipple pButton class="yellow-button" label="Save" type="submit"></button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
+
+<p-dialog header="Change Account Details" [(visible)]="accountDetailVisible" [modal]="true" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false" (transitionrun)="transitionURL = '/account'" (onHide)="router.navigateByUrl(transitionURL); logger('animationEnd')">
+  <div style="width: 350px;">
+    <div class="p-grid" style="border-bottom: #dbdbdb 1px solid; margin-bottom: 10px">
+      <div class="p-col-9">
+        <h4>Name:</h4>
+        <h4 style="font-weight: normal">{{currentUser.firstName | titlecase}} {{currentUser.lastName | titlecase}}</h4>
+      </div>
+      <div class="p-col-3 p-d-flex p-ai-center p-jc-center">
+        <button pButton pRipple class="gray-button" label="Edit" (click)="showEdit('editName')"></button>
+      </div>
+    </div>
+    <div class="p-grid" style="border-bottom: #dbdbdb 1px solid; margin-bottom: 10px">
+      <div class="p-col-9">
+        <h4>Email:</h4>
+        <h4 style="font-weight: normal">{{currentUser.email}}</h4>
+      </div>
+      <div class="p-col-3 p-d-flex p-ai-center p-jc-center">
+        <button pButton pRipple class="gray-button" label="Edit" (click)="showEdit('editEmail')"></button>
+      </div>
+    </div>
+    <div class="p-grid" style="border-bottom: #dbdbdb 1px solid; margin-bottom: 10px">
+      <div class="p-col-7">
+        <h4>Password:</h4>
+      </div>
+      <div class="p-col-5 p-d-flex p-ai-center p-jc-center">
+        <button pButton pRipple class="gray-button" label="Change Password" (click)="showEdit('editPassword')"></button>
+      </div>
+    </div>
+    <div class="p-d-flex p-jc-center">
+      <button pRipple pButton class="yellow-button" label="Done" type="button" (click)="accountDetailVisible = false"></button>
+    </div>
+  </div>
+</p-dialog>
+

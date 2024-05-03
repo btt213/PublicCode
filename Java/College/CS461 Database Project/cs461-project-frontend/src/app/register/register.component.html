@@ -1,0 +1,45 @@
+
+<div class="main-content p-mx-auto p-grid p-jc-center">
+  <div style="width: 350px">
+    <div class="login-card p-mx-auto" style="border-radius: 4px; border: 1px #ddd solid; height: auto; width: 350px; padding: 20px 26px">
+      <h1 class="a-spacing-small">Create Account</h1>
+      <form [formGroup]="registerForm" #form="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="p-fluid">
+          <div class="p-field form-group">
+            <label>First Name</label>
+            <input pInputText type="text" formControlName="firstName" id="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+            <small *ngIf="form.submitted && f.firstName.invalid && f.firstName.errors.required" id="firstName-notification" class="p-error">First Name is required</small>
+          </div>
+          <div class="p-field form-group">
+            <label>Last Name</label>
+            <input pInputText type="text" formControlName="lastName" id="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+            <small *ngIf="form.submitted && f.lastName.invalid && f.lastName.errors.required" id="lastName-notification" class="p-error">Last Name is required</small>
+          </div>
+          <div class="p-field form-group">
+            <label>Email</label>
+            <input pInputText type="text" formControlName="email" id="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+            <small *ngIf="form.submitted && f.email.invalid && f.email.errors.required" class="p-error">Email is required</small>
+            <small *ngIf="form.submitted && f.email.invalid && f.email.errors.pattern" class="p-error">Enter a valid email address</small>
+          </div>
+          <div class="p-field form-group">
+            <label>Password</label>
+            <p-password formControlName="password" id="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" [toggleMask]="true"></p-password>
+            <small *ngIf="form.submitted && f.password.invalid && f.password.errors.required"  class="p-error">Password is required</small>
+            <small *ngIf="form.submitted && f.password.invalid && f.password.errors.minLength"  class="p-error">Passwords must be at least 6 characters</small>
+          </div>
+          <div class="p-field form-group">
+            <br>
+            <button pRipple pButton label="Create your Amazon account" class="yellow-button"></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="divider">
+      <h5>Already have an Amazon account?
+        <a routerLink="/login">Sign-In</a>
+      </h5>
+    </div>
+
+  </div>
+</div>

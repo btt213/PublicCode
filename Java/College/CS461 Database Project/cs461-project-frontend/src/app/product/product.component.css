@@ -1,0 +1,20 @@
+.imageListContainer{
+  width: 40px;
+  height: 40px;
+  border: solid 1px #dbdbdb;
+  cursor: pointer;
+}
+.imageListContainerFocused{
+  box-shadow: 0 0 5px #e77600;
+  border-color: #e77600;
+}
+hr{
+  background-color: transparent;
+  display: block;
+  height: 1px;
+  border-width: 0;
+  border-top: 1px solid #e7e7e7;
+  line-height: 19px;
+  margin-top: 0;
+  margin-bottom: 14px;
+}

@@ -1,0 +1,36 @@
+
+ul {
+
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+ul li:nth-child(3) {
+  margin-right: 0;
+}
+li {
+  display: inline-grid;
+  padding: 0;
+  margin-right: 20px; /* Remove margins */
+  margin-bottom: 20px; /* Remove margins */
+}
+img {
+  vertical-align: top;
+  max-width: 100%;
+  border: 0;
+}
+.card-cell{
+  width: 320px;
+  height: 100px;
+}
+.card-button{
+  background: #fff;
+  border-radius: 4px;
+  border: 1px #ddd solid;
+  cursor: pointer;
+  padding: 14px 18px;
+  height: 100%;
+}
+.card-button:hover{
+  background: #eee;
+}

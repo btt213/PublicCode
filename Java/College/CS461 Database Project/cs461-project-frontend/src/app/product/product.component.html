@@ -1,0 +1,60 @@
+<div *ngIf="product.name != null && categories != null" style="padding: 18px 18px 18px 18px;min-width: 998px;">
+  <div class="p-d-flex p-grid" style="width: 100%; height: 100%">
+    <div class="p-mr-1">
+      <ul style="list-style-type:none;padding: 0">
+        <li *ngFor="let image of productImageUrls; let i = index" class="p-d-flex p-jc-center">
+          <div #container class="imageListContainer p-mb-2"  [ngClass]="{'imageListContainerFocused': i === 0}" (mouseenter)="focused(container, i)">
+            <span class="p-d-flex p-jc-center p-ai-center" style="width: 100%; height: 100%">
+              <img src="{{image}}" style="max-height: 100%; max-width: 100%">
+            </span>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+    <div class="p-d-flex p-jc-center">
+      <div class="p-d-flex p-jc-center p-ai-center" style="width: 440px; height: 440px">
+        <img src="{{mainImg}}" style="max-height: 100%; max-width: 100%">
+      </div>
+    </div>
+    <div class="p-mx-2 p-col" style="width: 100%;">
+      <div class="">
+        <h1>{{product.name}}</h1>
+        <h3 *ngIf="product.seller != null" style="font-weight: normal ">Sold by {{product.seller}}</h3>
+        <hr>
+      </div>
+      <div class="p-flex p-grid p-mb-3" style="margin-left: 0">
+        <h3 *ngIf="product.price != null" style="font-weight: normal">Price:</h3>
+        <h2 class="p-ml-1" *ngIf="product.price != null" style="font-weight: normal; color: #B12704!important">${{product.price}}</h2>
+      </div>
+      <i *ngIf="product.primeEligible === true" class="primeLogo" role="img"></i>
+      <h3 *ngIf="product.primeEligible === false" style="font-weight: normal ">Not eligible for Prime Shipping</h3>
+      <div *ngIf="product.description != null ">
+        <hr>
+        <h4>{{categories[product.category-1].name}}</h4>
+        <h2>Description</h2>
+        <h3 style="font-weight: normal ">{{product.description}}</h3>
+      </div>
+    </div>
+    <div>
+      <div *ngIf="product.stock != null" class="p-mx-2  p-p-4 " style="width: 250px;border: 1px #D5D9D9 solid; border-radius: 8px;">
+        <div>
+          <div class="p-mb-4">
+            <h2 class="p-ml-1" *ngIf="product.price != null" style="font-weight: normal; color: #B12704!important">${{product.price}}</h2>
+            <i *ngIf="product.primeEligible === true" class="primeLogo" role="img"></i>
+          </div>
+          <h2 class="p-ml-1 p-mb-4" *ngIf="product.stock > 10" style="font-weight: normal; color: #007600!important">In Stock</h2>
+          <h2 class="p-ml-1 p-mb-4" *ngIf="product.stock > 0 && product.stock <= 10" style="font-weight: normal; color: #B12704!important">Only {{product.stock}} left in stock - order soon</h2>
+          <h2 class="p-ml-1 p-mb-4" *ngIf="product.stock === 0" style="font-weight: normal; color: #B12704!important">Out of Stock</h2>
+          <div class="p-mb-4">
+            <span class="p-mr-2">qty:</span>
+            <p-dropdown [options]="quantityOptions" [(ngModel)]="quantity" optionLabel="name">
+            </p-dropdown>
+          </div>
+          <button pButton class="yellow-button" label="Add to Cart" style="width: 100%"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

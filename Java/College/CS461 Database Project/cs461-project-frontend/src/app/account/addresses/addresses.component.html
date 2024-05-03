@@ -1,0 +1,73 @@
+<div *ngIf="app.loading === false" class="p-d-flex p-jc-center">
+  <div class="main-content">
+    <h1 style="border-bottom: #FFA62B solid 1px; margin-bottom: 40px">
+      Your Addresses
+    </h1>
+    <div style="padding:0 0">
+      <div style="width: 980px;flex-wrap: wrap;" class="p-d-flex">
+        <div class="address-box" style="height: 266px">
+          <div class="address-add p-d-flex p-jc-center p-ai-center" (click)="addAddress = true">
+            <h1>Add Address</h1>
+          </div>
+        </div>
+        <div *ngFor="let address of addresses" class="address-box" style="height: 266px">
+          <div class="address-inner p-flex-column">
+            <div *ngIf="address.favorite === true" style="width: 100%; height: 40px; border-bottom: 1px solid #D5D9D9; padding-left: 20px" class="p-ai-center p-d-flex">
+              <h3>Default</h3>
+            </div>
+            <div class="p-d-flex p-flex-column" style="padding-top: 10px; padding-left: 20px">
+
+              <h5 class="text">{{address.name | titlecase}}</h5>
+              <span class="text">{{address.address | titlecase}}</span>
+              <span class="text">{{address.city | titlecase}}, {{address.state | uppercase}} {{address.zipcode}}</span>
+            </div>
+            <div style="margin-left: 20px;margin-bottom: 10px; height: 100%" class="p-d-flex p-ai-end">
+              <button class="p-mr-2 yellow-button" pRipple pButton *ngIf="address.favorite != true" (click)="makeFavorite(address.addressId)"   label="Make Favorite"></button>
+              <button class="p-mr-2 gray-button" pRipple pButton label="Delete" (click)="deletePaymentMethod(address.addressId)"></button>
+              <button class="p-mr-2 gray-button" pRipple pButton label="Edit" (click)="editAddress(address)"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog [contentStyle]="{'overflow':'visible'}" header="Add Address" [(visible)]="addAddress" [modal]="true" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <div style="width: 350px" class="p-fluid">
+    <form [formGroup]="addressForm" #formPaymentMethod="ngForm" (ngSubmit)="submitAddress(formPaymentMethod)">
+      <div class="p-field form-group">
+        <label>Name</label>
+        <input pInputText placeholder="Name" formControlName="name" id="name" class="form-control" [ngClass]="{ 'is-invalid': formPaymentMethod.submitted && form.name.errors }">
+        <small *ngIf="formPaymentMethod.submitted && form.name.invalid && form.name.errors.required" id="password-notification" class="p-error">Name is required</small>
+      </div>
+      <div *ngIf="form.zipcode.value.typeId != 6">
+      <div class="p-field form-group">
+        <label>Address</label>
+        <input pInputText placeholder="Street Address" formControlName="address" id="address" class="form-control" [ngClass]="{ 'is-invalid': formPaymentMethod.submitted && form.address.errors }">
+        <small *ngIf="formPaymentMethod.submitted && form.address.invalid && form.address.errors.required" class="p-error">Address is required</small>
+      </div>
+      <div class="p-field form-group">
+        <label>City</label>
+        <input pInputText formControlName="city" id="city" class="form-control" [ngClass]="{ 'is-invalid': formPaymentMethod.submitted && form.city.errors }">
+        <small *ngIf="formPaymentMethod.submitted && form.city.invalid && form.city.errors.required" class="p-error">City is required</small>
+      </div>
+      <div class="p-field form-group">
+        <label>State</label>
+        <input pInputText  formControlName="state" id="state" class="form-control" [ngClass]="{ 'is-invalid': formPaymentMethod.submitted && form.state.errors }">
+        <small *ngIf="formPaymentMethod.submitted && form.state.invalid && form.state.errors.required" class="p-error">State is required</small>
+      </div>
+      <div class="p-field form-group">
+        <label>Zip Code</label>
+        <input pInputText  formControlName="zipcode" id="zipcode" class="form-control" [ngClass]="{ 'is-invalid': formPaymentMethod.submitted && form.zipcode.errors }">
+        <small *ngIf="formPaymentMethod.submitted && form.zipcode.invalid && form.zipcode.errors.required" class="p-error">Zip code is required</small>
+      </div>
+      </div>
+      <div class="p-d-flex p-jc-center" style="margin-top: 20px">
+        <button pButton pRipple class="gray-button" label="Cancel" type="reset" (click)="addAddress = false" style="margin-right: 10px"></button>
+        <button pRipple pButton class="yellow-button" label="Save" type="submit"></button>
+      </div>
+    </form>
+  </div>
+</p-dialog>

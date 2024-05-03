@@ -1,0 +1,26 @@
+span.filter{
+  font-family: Ember, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+ul {
+
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+ul li:nth-child(3) {
+  margin-right: 0;
+}
+li {
+  display: inline-grid;
+}
+.card-cell{
+  width: 330px;
+  height: 500px;
+  padding: 0 10px;
+}
+.card-button{
+  cursor: pointer;
+}

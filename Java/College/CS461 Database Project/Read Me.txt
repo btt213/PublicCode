@@ -1,0 +1,11 @@
+Open the cs461-project-backend and cs461-projectfrontend in a java IDE. We used Intellij 2020.3.2.
+
+For the frontend, select the main branch in the bottom right, and build the program(ctrl+F9). 
+
+install Angular cli using "npm install -g @angular/cli" in the terminal, and check the install with "ng --version". If an error is given, use the command "ng update".
+
+Start the frontend using "ng run".
+
+Start the backend by building(ctrl+F9) the backend and running the program(Shift+F10).
+
+After both are running, open an internet browser and go to "http://localhost:4200/".

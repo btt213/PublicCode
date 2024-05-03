@@ -1,0 +1,228 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~primeng/resources/themes/bootstrap4-light-blue/theme.css";
+@import "~primeicons/primeicons.css";
+@import "~primeng/resources/primeng.css";
+@import "~primeflex/primeflex.css";
+
+@font-face {
+  font-family: Ember;
+  src: local("Ember-Rg"), url("./assets/fonts/Ember/AmazonEmber_Rg.ttf") format("truetype");
+}
+
+:root {
+  --primary-color: #febd69;
+}
+h1, h2, h3, h4, h5, h6, span {
+  font-family: Ember, Arial,sans-serif;
+  padding: 0;
+  margin: 0;
+}
+h1, h2, h3, h4 {
+  text-rendering: optimizeLegibility;
+  padding-bottom: 4px;
+}
+h1.a-spacing-small {
+  margin-bottom: 10px!important;
+}
+label {
+  font-family: Ember, sans-serif;
+}
+span{
+  font-size: 13px;
+}
+h1 {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.2;
+}
+html,body{
+  height:100%;
+  font-size: 13px;
+  line-height: 19px;
+  color: #111;
+  font-family: Ember, Arial,sans-serif;
+}
+a, a:link{
+  text-decoration: none;
+}
+.divider{
+  text-align: center;
+  position: relative;
+  top: 2px;
+  padding-top: 1px;
+  margin-bottom: 14px;
+  line-height: 0;
+}
+.divider:after{
+  content: "";
+  width: 100%;
+  background-color: transparent;
+  display: block;
+  height: 1px;
+  border-top: 1px solid #e7e7e7;
+  position: absolute;
+  top: 50%;
+  margin-top: -1px;
+  z-index: 1;
+}
+.divider-footer .divider-inner {
+  height: 44px;
+  margin-bottom: -18px;
+  background: -webkit-linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
+  background: linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
+  z-index: 0;
+  zoom: 1;
+}
+.divider-footer .divider-inner:after{
+  display: block;
+  width: 100%;
+  height: 44px;
+  background-color: transparent;
+  background: -webkit-linear-gradient(to right,#fff,rgba(255,255,255,0),#fff);
+  background: linear-gradient(to right,#fff,rgba(255,255,255,0),#fff);
+  z-index: 1;
+  content: "";
+}
+.divider h5{
+  line-height: 1;
+  font-size: 12px;
+  color: #767676;
+  font-weight: 400;
+  z-index: 2;
+  position: relative;
+  display: inline-block;
+  background-color: #fff;
+  padding: 0 8px 0 7px;
+}
+.main-content{
+  margin: 50px!important;
+}
+.p-dialog .p-dialog-content {
+  border-radius: 0 0 4px 4px;
+}
+
+.main_logo {
+  margin-top: 12px;
+  pointer-events: none;
+  display: block;
+  position: fixed;
+  z-index: 1;
+  height: 29px;
+  width: 96px;
+  top: 8px;
+  left: 16px;
+  background: url("assets/images/amazon_sprites.png") -10px -51px; /* coordinates of the upper left point: x = 0 and y = 0 */
+}
+.login-card{
+  margin-bottom: 22px;
+}
+.prime_logo {
+  display: block;
+  position: fixed;
+  z-index: 2;
+  height: 17px;
+  width: 45px;
+  top: 38px;
+  left: 84px;
+  background: url("assets/images/amazon_sprites.png") -160px -10px; /* coordinates of the upper left point: x = -300 and y = -200 (we use negative numbers) */
+}
+
+.nav-left, .nav-fill,.nav-right{
+  height: 60px;
+  background: #131921;
+}
+.nav-fill{
+  width: 100%;
+  padding: 5px 0 0 0;
+}
+.search-bar{
+  height: 50px;
+  width: 100%;
+  display:flex;
+  padding-top: 4px;
+  padding-bottom: 6px;
+}
+.cat .p-dropdown{
+  border-radius: 5px 0 0 5px;
+  background: #dedede;
+  height: 100%;
+  font-family: Ember, sans-serif;
+}
+#nav-logo{
+  display: flex;
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 134px;
+  padding: 4px 0 0 0;
+  margin-left:11px;
+  margin-right: 0px;
+}
+.right-of-search{
+  display: flex;
+  position: relative;
+  width: 120px;
+  padding: 4px 0 0 0;
+  margin-left:10px;
+
+}
+.nav-logo-link{
+
+  height: 50px;
+  width: 100%;
+  flex-shrink: 0;
+  text-decoration: none;
+  padding: 1px 8px 0 6px;
+  margin: 1px;
+}
+.nav-location{
+
+  height: 50px;
+  width: 100%;
+  flex-shrink: 0;
+  text-decoration: none;
+  padding: 1px 8px 0 6px;
+  margin: 1px;
+}
+#nav-location-slot{
+
+  margin-left: 2px;
+  width: 120px;
+  padding: 0;
+}
+button.gray-button.p-button  {
+  background: #e7e9ec;
+  border-color: #adb1b8 #a2a6ac #8d9096;
+  color: #000000;
+  font-family: Ember, sans-serif
+}
+button.gray-button.p-button:hover {
+  background: #dbdcde;
+  border-color: #adb1b8 #a2a6ac #8d9096;
+  color: #000000;
+}
+button.yellow-button.p-button  {
+  background: #febd69;
+  border-color: #9f7933;
+  color: #000000;
+  font-family: Ember, sans-serif
+}
+button.yellow-button.p-button:hover {
+  background: #eeaf5e;
+  border-color: #9f7933;
+  color: #000000;
+}
+
+.primeLogo{
+  display: inline-block;
+  width: 53px;
+  height: 15px;
+  background-position: -170px -137px;
+  vertical-align: baseline;
+  background-image: url(https://m.media-amazon.com/images/S/sash/-YXtK4io-KvrV8a.png);
+  -webkit-background-size: 512px 256px;
+  background-size: 512px 256px;
+  background-repeat: no-repeat;
+}
